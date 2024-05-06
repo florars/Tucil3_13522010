@@ -151,6 +151,7 @@ public class WordLadderSolverGUI implements ActionListener{
             gbc.gridwidth = 1;
             gbc.gridy = 3;
             panel3.add(new JLabel(fail));
+            res.remove(false);
         }
         else if (res.containsKey(true)) {
             forLabel.append(res.get(true));
@@ -160,6 +161,7 @@ public class WordLadderSolverGUI implements ActionListener{
             gbc.gridwidth = 1;
             gbc.gridx = 3;
             panel3.add(new JLabel(success));
+            res.remove(true);
         }
         panel3.revalidate();
         window.pack();
