@@ -2,12 +2,14 @@ import java.util.Map;
 import java.util.HashMap;
 
 public class UCS {
-    private static int visited = 0;
+    private static int visited;
     private Map<String, Integer> checkedWords = new HashMap<String,Integer>();
 
-    public Boolean run(TreeNode start, String end, DictReader dictionary) {
+    public HashMap<Boolean, String> run(TreeNode start, String end, DictReader dictionary) {
+        UCS.visited = 0;
         long startTime = System.currentTimeMillis();
         Boolean found = false;
+        String resString = "Tidak ditemukan jalan dari kata awal ke kata akhir!";
         TreeNode temp = start;
         Prioqueue prioqueue = new Prioqueue();
         prioqueue.pushGn(start);
@@ -37,14 +39,15 @@ public class UCS {
             }
         }
         if (found) {
-            System.out.print("Time elapsed: "); System.out.print(System.currentTimeMillis()-startTime); System.out.println("ms");
-            System.out.println("Jawaban ditemukan: ");
-            temp.printPath();
-            System.out.print("Panjang ladder yang ditemukan: ");
-            System.out.println(temp.getPath().size());
-            System.out.print("Jumlah kata yang dikunjungi: ");
-            System.out.println(visited);
+            resString = "Time elapsed: " + (System.currentTimeMillis()-startTime) +  "ms\nJawaban ditemukan: " 
+            + temp.printPath() + "Panjang ladder yang ditemukan: " + temp.getPath().size() +
+            "\nJumlah kata yang dikunjungi: " + visited;
         }
-        return found;
+        else {
+            resString += "\n" + "Time elapsed: " + (System.currentTimeMillis()-startTime) +  "ms" + "\n" + "Jumlah kata yang dikunjungi: " + visited + "\n";
+        }
+        HashMap<Boolean, String> hasil = new HashMap<Boolean, String>();
+        hasil.put(found, resString);
+        return (hasil);
     }
 }

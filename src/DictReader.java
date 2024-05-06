@@ -34,54 +34,8 @@ public class DictReader {
         }
     }
 
-    public void makeMap() {
-        this.differentByOne = new HashMap<>();
-        try {
-            Scanner read = new Scanner(this.dict);
-            while (read.hasNextLine()) {
-                String word1 = read.nextLine();
-                this.differentByOne.put(word1, this.difOneFinder(word1));
-            }
-            read.close();
-            System.out.println("Selesai proses mapping");
-        }
-        catch (FileNotFoundException e) {
-            System.err.println(e.getMessage());
-        }
-    }
-
     private Boolean hasWord(String word) {
         return (this.words.contains(word));
-    }
-
-    private Boolean difCounterOne(String word1, String word2) {
-        int difAllowed = 1;
-        int i = 0;
-        if (word1.length() != word2.length()) return false;
-        while (difAllowed >= 0 && i < word1.length()) {
-            if (word1.charAt(i)!=word2.charAt(i)) {
-                difAllowed--;
-            }
-            i++;
-        }
-        if (difAllowed < 0) return false;
-        else return true;
-    }
-
-    private ArrayList<String> difOneFinder(String word) {
-        ArrayList<String> wordsOneDifferent = new ArrayList<>();
-        try {
-            Scanner readLoop = new Scanner(this.dict);
-            while (readLoop.hasNextLine()) {
-                String word2 = readLoop.nextLine();
-                if (this.difCounterOne(word, word2)) wordsOneDifferent.add(word2);
-            }
-            readLoop.close();
-        }
-        catch (FileNotFoundException e) {
-            System.err.println(e.getMessage());
-        }
-        return wordsOneDifferent;
     }
 
     public TreeNode findAdjacent(TreeNode n) {

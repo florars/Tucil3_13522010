@@ -45,12 +45,15 @@ public class TreeNode {
         return this.path;
     }
 
-    public void printPath() {
+    public String printPath() {
+        String res = "";
         for (int i=0; i<this.path.size()-1; i++) {
-            System.out.print(this.path.get(i));
-            System.out.print(" -> ");
+            res += this.path.get(i);
+            res += " -> ";
         }
-        System.out.println(this.path.getLast());
+        res += this.path.getLast();
+        res += "\n";
+        return res;
     }
 
     public int getGn() {
