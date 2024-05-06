@@ -3,7 +3,7 @@ import java.util.Map;
 
 public class GBFS {
     private static int visited = 0;
-    private Map<String, Integer> checkedWords = new HashMap<String,Integer>();
+    private Map<String, Integer> checkedWords;
     
     public HashMap<Boolean,String> run(TreeNode start, String end, DictReader dictionary) {
         GBFS.visited = 0;
@@ -13,6 +13,7 @@ public class GBFS {
         TreeNode temp = start;
         Prioqueue prioqueue = new Prioqueue();
         prioqueue.pushFn(start);
+        checkedWords = new HashMap<String,Integer>();
         while (!prioqueue.isEmpty()) {
             temp = prioqueue.pop();
             visited++;

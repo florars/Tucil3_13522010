@@ -3,7 +3,7 @@ import java.util.Map;
 
 public class Astar {
     private static int visited = 0;
-    private Map<String, Integer> checkedWords = new HashMap<String,Integer>();
+    private Map<String, Integer> checkedWords;
 
     public HashMap<Boolean,String> run(TreeNode start, String end, DictReader dictionary) {
         Astar.visited = 0;
@@ -13,6 +13,7 @@ public class Astar {
         TreeNode temp = start;
         Prioqueue prioqueue = new Prioqueue();
         prioqueue.pushGnFn(start);
+        checkedWords = new HashMap<String,Integer>();
         while (!prioqueue.isEmpty()) {
             temp = prioqueue.pop();
             visited++;

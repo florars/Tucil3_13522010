@@ -115,6 +115,7 @@ public class WordLadderSolverGUI implements ActionListener{
         String end = endWord.getText();
         StringBuilder forLabel = new StringBuilder();
         JTextArea ta = new JTextArea();
+        ta.setFont(new Font("Dialog", Font.BOLD, 24));
 
         HashMap<Boolean, String> res = new HashMap<Boolean,String>();
         if (e.getSource() == UCS) {

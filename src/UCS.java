@@ -3,7 +3,7 @@ import java.util.HashMap;
 
 public class UCS {
     private static int visited;
-    private Map<String, Integer> checkedWords = new HashMap<String,Integer>();
+    private Map<String, Integer> checkedWords;
 
     public HashMap<Boolean, String> run(TreeNode start, String end, DictReader dictionary) {
         UCS.visited = 0;
@@ -13,6 +13,7 @@ public class UCS {
         TreeNode temp = start;
         Prioqueue prioqueue = new Prioqueue();
         prioqueue.pushGn(start);
+        checkedWords = new HashMap<String,Integer>();
         while (!prioqueue.isEmpty()) {
             temp = prioqueue.pop();
             visited++;
