@@ -16,7 +16,7 @@ public class Prioqueue {
                     break;
                 }   
             }
-            if (queue.get(queue.size()-1).getGn() <= n.getGn()) queue.addLast(n);
+            if (queue.get(queue.size()-1).getGn() <= n.getGn()) queue.add((queue.size()-1), n);
         }
     }
 
@@ -29,7 +29,7 @@ public class Prioqueue {
                     break;
                 }   
             }
-            if (queue.get(queue.size()-1).getHn() <= n.getHn()) queue.addLast(n);
+            if (queue.get(queue.size()-1).getHn() <= n.getHn()) queue.add((queue.size()-1), n);
         }
     }
 
@@ -42,7 +42,7 @@ public class Prioqueue {
                     break;
                 }   
             }
-            if ((queue.get(queue.size()-1).getGn() + queue.get(queue.size()-1).getHn()) <= (n.getGn() + n.getHn())) queue.addLast(n);
+            if ((queue.get(queue.size()-1).getGn() + queue.get(queue.size()-1).getHn()) <= (n.getGn() + n.getHn())) queue.add((queue.size()-1), n);
         }
     }
 

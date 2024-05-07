@@ -51,7 +51,7 @@ public class TreeNode {
             res += this.path.get(i);
             res += " -> ";
         }
-        res += this.path.getLast();
+        res += this.path.get(this.path.size()-1);
         res += "\n";
         return res;
     }

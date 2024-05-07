@@ -9,7 +9,7 @@ Java
 
 ## How to run
 ```
-javac Main.java
+javac Main.java Astar.java DictReader.java GBFS.java Prioqueue.java TreeNode.java UCS.java WordLadderSolverGUI.java
 java Main
 ```
 
@@ -21,7 +21,7 @@ The dictionary used for this solver is located in ```src/Dictionary.txt```. You 
 
 An alternative version that uses CLI instead of GUI exists in Main2. To run, do
 ```
-javac Main2.java
+javac Main2.java Astar.java DictReader.java GBFS.java Prioqueue.java TreeNode.java UCS.java WordLadderSolverGUI.java
 java Main2
 ```
 
