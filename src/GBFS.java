@@ -12,7 +12,7 @@ public class GBFS {
         String resString = "Tidak ditemukan jalan dari kata awal ke kata akhir!";
         TreeNode temp = start;
         Prioqueue prioqueue = new Prioqueue();
-        prioqueue.pushFn(start);
+        prioqueue.pushHn(start);
         checkedWords = new HashMap<String,Integer>();
         while (!prioqueue.isEmpty()) {
             temp = prioqueue.pop();
@@ -24,15 +24,10 @@ public class GBFS {
             }
             else {
                 temp = dictionary.findAdjacent(temp);
-                if (temp.getAllChildren().isEmpty()) {
-                    break;
-                }
-                else {
-                    for (String child : temp.getAllChildren()) {
-                        if (!checkedWords.containsKey(child)) {
-                            TreeNode tempChild = new TreeNode(child, temp.getPath(), 0, this.countFn(child, end));
-                            prioqueue.pushFn(tempChild);
-                        }
+                for (String child : temp.getAllChildren()) {
+                    if (!checkedWords.containsKey(child)) {
+                        TreeNode tempChild = new TreeNode(child, temp.getPath(), 0, this.countHn(child, end));
+                        prioqueue.pushHn(tempChild);
                     }
                 }
             }
@@ -50,7 +45,7 @@ public class GBFS {
         return (hasil);
     }
 
-    private int countFn(String word, String goal) {
+    private int countHn(String word, String goal) {
         int count = 0;
         for (int i=0; i<word.length(); i++) {
             if(word.charAt(i)!=goal.charAt(i)) count++;

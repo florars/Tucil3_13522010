@@ -44,7 +44,6 @@ public class WordLadderSolverGUI implements ActionListener{
             failPanel.setBorder(BorderFactory.createEmptyBorder(30,30,30,30));
             failPanel.setLayout(new GridLayout(0, 1));
             JLabel failLabel = new JLabel("File dictionary src/Dictionary.txt tidak ditemukan!\n Pastikan file tersebut berada di tempat yang benar.");
-            System.out.println(failLabel.getFont());
             failLabel.setFont(new Font("Dialog", Font.BOLD, 24));
             failPanel.add(new Box(0));
             failPanel.add(new JLabel(fail,0));
@@ -54,7 +53,6 @@ public class WordLadderSolverGUI implements ActionListener{
         else {
             this.dictionary.makeList();
     
-            if(this.dictionary == null) System.out.println("help");
             startWord = new JTextField();
             JLabel startLabel = new JLabel("Kata awal");
             startLabel.setLabelFor(startWord);
@@ -113,20 +111,14 @@ public class WordLadderSolverGUI implements ActionListener{
     public void actionPerformed(ActionEvent e) {
         TreeNode startNode = new TreeNode(startWord.getText());
         String end = endWord.getText();
+        
         StringBuilder forLabel = new StringBuilder();
         JTextArea ta = new JTextArea();
-        ta.setFont(new Font("Dialog", Font.BOLD, 24));
-
-        HashMap<Boolean, String> res = new HashMap<Boolean,String>();
-        if (e.getSource() == UCS) {
-            res = ucs.run(startNode, end, this.dictionary);
-        }
-        if (e.getSource() == GBFS) {
-            res = gbfs.run(startNode, end, this.dictionary);
-        }
-        if (e.getSource() == Astar) {
-            res = astar.run(startNode, end, this.dictionary);
-        }
+        ta.setFont(new Font("Dialog", Font.BOLD, 18));
+        ta.setEditable(false);
+        ta.setLineWrap(true);
+        ta.setWrapStyleWord(true);
+        ta.setPreferredSize(new Dimension(900,400));
 
         panel3.removeAll();
         panel3.revalidate();
@@ -140,29 +132,46 @@ public class WordLadderSolverGUI implements ActionListener{
         gbc.gridy = 0;
         gbc.insets = new Insets(15, 15, 15, 15);
 
-        ta.setLineWrap(true);
-        ta.setWrapStyleWord(true);
-        ta.setPreferredSize(new Dimension(900,400));
-
-        if (res.containsKey(false)) {
-            forLabel.append(res.get(false));
-
-            ta.setText(forLabel.toString());
-            panel3.add(ta, gbc);
-            gbc.gridwidth = 1;
-            gbc.gridy = 3;
-            panel3.add(new JLabel(fail));
-            res.remove(false);
-        }
-        else if (res.containsKey(true)) {
-            forLabel.append(res.get(true));
-
-            ta.setText(forLabel.toString());
+        if (startNode.getRoot().length() != end.length()) {
+            ta.setText("The length of starting word and goal word are different!\nCan not compute ladder for these words");
             panel3.add(ta, gbc);
             gbc.gridwidth = 1;
             gbc.gridx = 3;
-            panel3.add(new JLabel(success));
-            res.remove(true);
+            panel3.add(new JLabel(fail)); 
+        }
+
+        else {
+            HashMap<Boolean, String> res = new HashMap<Boolean,String>();
+            if (e.getSource() == UCS) {
+                res = ucs.run(startNode, end, this.dictionary);
+            }
+            if (e.getSource() == GBFS) {
+                res = gbfs.run(startNode, end, this.dictionary);
+            }
+            if (e.getSource() == Astar) {
+                res = astar.run(startNode, end, this.dictionary);
+            }
+
+            if (res.containsKey(false)) {
+                forLabel.append(res.get(false));
+
+                ta.setText(forLabel.toString());
+                panel3.add(ta, gbc);
+                gbc.gridwidth = 1;
+                gbc.gridy = 3;
+                panel3.add(new JLabel(fail));
+                res.remove(false);
+            }
+            else if (res.containsKey(true)) {
+                forLabel.append(res.get(true));
+
+                ta.setText(forLabel.toString());
+                panel3.add(ta, gbc);
+                gbc.gridwidth = 1;
+                gbc.gridx = 3;
+                panel3.add(new JLabel(success));
+                res.remove(true);
+            }
         }
         panel3.revalidate();
         window.pack();

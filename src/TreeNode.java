@@ -5,7 +5,7 @@ public class TreeNode {
     private String root;
     private ArrayList<String> children;
     private int gn;
-    private int fn;
+    private int hn;
 
     public TreeNode(String root) {
         this.root = root;
@@ -13,16 +13,16 @@ public class TreeNode {
         this.path.add(root);
         this.children = new ArrayList<>();
         this.gn = 0;
-        this.fn = 0;
+        this.hn = 0;
     }
 
-    public TreeNode(String root, ArrayList<String> path, int gn, int fn) {
+    public TreeNode(String root, ArrayList<String> path, int gn, int hn) {
         this.root = root;
         this.path = new ArrayList<>(path);
         this.path.add(root);
         this.children = new ArrayList<>();
         this.gn = gn;
-        this.fn = fn;
+        this.hn = hn;
     }
 
     public void AddChild(String child) {
@@ -60,7 +60,7 @@ public class TreeNode {
         return this.gn;
     }
 
-    public int getFn() {
-        return this.fn;
+    public int getHn() {
+        return this.hn;
     }
 }

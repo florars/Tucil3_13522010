@@ -24,17 +24,10 @@ public class UCS {
             }
             else {
                 temp = dictionary.findAdjacent(temp);
-                if (temp.getAllChildren().isEmpty()) {
-                    break;
-                }
-                else {
-                    // System.out.print("Jumlah children:"); System.out.println(temp.getAllChildren().size());
-
-                    for (String child : temp.getAllChildren()) {
-                        if (!checkedWords.containsKey(child)) {
-                            TreeNode tempChild = new TreeNode(child, temp.getPath(), temp.getGn()+1, 0);
-                            prioqueue.pushGn(tempChild);
-                        }
+                for (String child : temp.getAllChildren()) {
+                    if (!checkedWords.containsKey(child)) {
+                        TreeNode tempChild = new TreeNode(child, temp.getPath(), temp.getGn()+1, 0);
+                        prioqueue.pushGn(tempChild);
                     }
                 }
             }

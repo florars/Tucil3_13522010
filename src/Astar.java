@@ -12,27 +12,24 @@ public class Astar {
         String resString = "Tidak ditemukan jalan dari kata awal ke kata akhir!";
         TreeNode temp = start;
         Prioqueue prioqueue = new Prioqueue();
-        prioqueue.pushGnFn(start);
+        prioqueue.pushGnHn(start);
         checkedWords = new HashMap<String,Integer>();
+
         while (!prioqueue.isEmpty()) {
             temp = prioqueue.pop();
             visited++;
             checkedWords.put(temp.getRoot(), 1);
+
             if (temp.getRoot().equals(end)) {
                 found = true;
                 break;
             }
             else {
                 temp = dictionary.findAdjacent(temp);
-                if (temp.getAllChildren().isEmpty()) {
-                    break;
-                }
-                else {
-                    for (String child : temp.getAllChildren()) {
-                        if (!checkedWords.containsKey(child)) {
-                            TreeNode tempChild = new TreeNode(child, temp.getPath(), temp.getGn()+1,  this.countFn(child, end));
-                            prioqueue.pushGnFn(tempChild);
-                        }
+                for (String child : temp.getAllChildren()) {
+                    if (!checkedWords.containsKey(child)) {
+                        TreeNode tempChild = new TreeNode(child, temp.getPath(), temp.getGn()+1,  this.countHn(child, end));
+                        prioqueue.pushGnHn(tempChild);
                     }
                 }
             }
@@ -50,7 +47,7 @@ public class Astar {
         return (hasil);
     }
 
-    private int countFn(String word, String goal) {
+    private int countHn(String word, String goal) {
         int count = 0;
         for (int i=0; i<word.length(); i++) {
             if(word.charAt(i)!=goal.charAt(i)) count++;

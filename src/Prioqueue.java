@@ -11,38 +11,38 @@ public class Prioqueue {
         if (this.queue.isEmpty()) this.queue.add(0, n);
         else {
             for (int i=0; i<queue.size(); i++) {
-                if (queue.get(i).getGn() >= n.getGn()) {
+                if (queue.get(i).getGn() > n.getGn()) {
                     queue.add(i, n);
                     break;
                 }   
             }
-            if (queue.get(queue.size()-1).getGn() < n.getGn()) queue.addLast(n);
+            if (queue.get(queue.size()-1).getGn() <= n.getGn()) queue.addLast(n);
         }
     }
 
-    public void pushFn(TreeNode n) {
+    public void pushHn(TreeNode n) {
         if (this.queue.isEmpty()) this.queue.add(0, n);
         else {
             for (int i=0; i<queue.size(); i++) {
-                if (queue.get(i).getFn() >= n.getFn()) {
+                if (queue.get(i).getHn() > n.getHn()) {
                     queue.add(i, n);
                     break;
                 }   
             }
-            if (queue.get(queue.size()-1).getFn() < n.getFn()) queue.addLast(n);
+            if (queue.get(queue.size()-1).getHn() <= n.getHn()) queue.addLast(n);
         }
     }
 
-    public void pushGnFn(TreeNode n) {
+    public void pushGnHn(TreeNode n) {
         if (this.queue.isEmpty()) this.queue.add(0, n);
         else {
             for (int i=0; i<queue.size(); i++) {
-                if ((queue.get(i).getGn() + queue.get(i).getFn()) >= (n.getGn() + n.getFn())) {
+                if ((queue.get(i).getGn() + queue.get(i).getHn()) > (n.getGn() + n.getHn())) {
                     queue.add(i, n);
                     break;
                 }   
             }
-            if ((queue.get(queue.size()-1).getGn() + queue.get(queue.size()-1).getFn()) < (n.getGn() + n.getFn())) queue.addLast(n);
+            if ((queue.get(queue.size()-1).getGn() + queue.get(queue.size()-1).getHn()) <= (n.getGn() + n.getHn())) queue.addLast(n);
         }
     }
 
@@ -54,5 +54,9 @@ public class Prioqueue {
 
     public boolean isEmpty() {
         return this.queue.isEmpty();
+    }
+
+    public void clear() {
+        this.queue.removeAll(queue);
     }
 }
